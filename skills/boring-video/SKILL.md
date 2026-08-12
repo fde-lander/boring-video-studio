@@ -30,11 +30,9 @@ Start at the first missing or explicitly revised artifact:
 
 Finish each skill's completion criterion before advancing. A downstream finding returns to the artifact that owns the decision, then propagates forward.
 
-## Route
+## Handoff
 
-Presentation and workflow are separate decisions. A faceless presentation does not automatically select `/faceless-explainer`.
-
-Read `/hyperframes` and apply its current contract. Use `/general-video` for custom, longer, or multi-scene work. Select `/faceless-explainer` only when the user wants faceless presentation and that workflow's current scope and duration fit.
+Presentation and workflow are separate decisions. Collect the presentation intent without selecting a workflow from memory. `/to-video` reads the current `/hyperframes` contract and performs the route.
 
 ## Done
 

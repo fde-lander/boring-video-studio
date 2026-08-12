@@ -20,7 +20,7 @@ continuity: What carries through the whole film
 - continuity_out: The object or motion handed to the next scene
 - rhythm: Quick hit, development, hold, or release
 - audio_intent: Narration emphasis and meaningful sound opportunity
-- feasibility: Assets, techniques, and production risk
+- feasibility: Envelope class, named dependency, and fallback when required
 
 Two or three sentences describing what the viewer experiences.
 ```

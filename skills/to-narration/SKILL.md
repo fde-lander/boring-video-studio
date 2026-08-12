@@ -5,7 +5,7 @@ description: Use when writing or revising spoken narration from approved video b
 
 # To narration
 
-Turn `BEATS.md` into `NARRATION.md`: a production-ready draft whose wording can still be revised by scene direction and animatic evidence.
+Turn `BEATS.md` into `NARRATION.md`: a production-ready draft whose wording can still be revised by scene direction and the selected HyperFrames workflow.
 
 ## Process
 
@@ -31,4 +31,4 @@ Spoken paragraph.
 6. Give every paragraph a stable `<beat-id>-pNN` anchor. Preserve anchors when rewriting that paragraph; assign a new anchor when inserting one.
 7. Read it aloud or estimate at the user's known speaking rate. Revise until every beat fits its budget and the full draft fits the target.
 
-The draft is complete when it can be recorded for an animatic, every sentence traces to a beat, and no later visual has been prematurely prescribed. `to-video` owns the final lock after animatic review.
+The draft is complete when it is ready for visual planning, every sentence traces to a beat, and no later visual has been prematurely prescribed. The selected HyperFrames workflow owns review timing and the voice-ready narration version after handoff.

@@ -9,20 +9,19 @@ Turn `SCENES.md` and `NARRATION.md` into HyperFrames `STORYBOARD.md`. Scenes def
 
 ## Process
 
-1. Read the scene source and the canonical `/hyperframes-core` storyboard format.
-2. Break each scene at changes in viewpoint, shot scale, subject action, information focus, or edit. A continuous camera move may remain one shot with multiple key moments.
-3. For every frame, include the canonical metadata plus these workflow fields:
-   - `scene_id`: parent scene
-   - `shot`: shot number within that scene
-   - `start_frame`: initial composition and subject state
-   - `end_frame`: final composition and changed state
-   - `camera`: shot scale, angle, and movement
-   - `action`: subject choreography
-   - `focus`: attention path
-   - `transition_out`: visual handoff
-   - `narration_ref`: stable paragraph anchor from `NARRATION.md`
-4. Use the scene's world, hero, event, continuity, and rhythm as constraints. Preserve the cognitive job from `BEATS.md`.
-5. Treat canonical HyperFrames fields as authoritative. Store the workflow fields above as preserved extra metadata; choose names that do not shadow a canonical field.
-6. Audit the sequence: every narration anchor is covered by one or more shots, intentionally silent shots carry no anchor, the action is legible without reading the narration, shot-scale and rhythm vary intentionally, every transition connects actual end and start states, and estimated duration accommodates both speech and action.
+1. Load `/hyperframes-core`, then read its current `references/storyboard-format.md`. That canonical contract is authoritative for `STORYBOARD.md`.
+2. Choose the HyperFrames frame boundary:
+   - start a new frame for a hard edit, independent transition, new visual world, materially different media source, or independently buildable unit;
+   - keep continuous camera movement and shared object state in one frame, describing its internal shot moments.
+3. Treat each HyperFrames frame as one buildable block. Within its narrative body, write an ordered `Shot moments` list at changes in viewpoint, shot scale, subject action, or information focus. Each moment declares:
+   - moment ID and approximate offset;
+   - initial state → action → final state;
+   - camera and attention path;
+   - narration anchors, or `silent`;
+   - handoff to the next moment or frame.
+4. Use canonical metadata wherever the current contract already carries the meaning. Put only missing workflow data in extras prefixed `boring_`, such as `boring_scene_id`.
+5. Use the scene's world, hero, event, continuity, rhythm, and feasibility as constraints. Preserve the cognitive job from `BEATS.md`.
+6. Treat canonical HyperFrames fields as authoritative. A `boring_*` extra supplements the contract; it never restates a canonical field.
+7. Audit the sequence: every narration anchor is covered by one or more shot moments, intentionally silent moments carry no anchor, frame boundaries follow the rules above, the action is legible without reading the narration, and estimated duration accommodates both speech and action.
 
-The storyboard is complete when every shot is buildable from its block and every scene event is fully covered. HyperFrames owns sketching and storyboard review after handoff.
+The storyboard is complete when every frame is an independently buildable block, its shot moments fully describe the scene event, and every transition connects actual end and start states. HyperFrames owns sketching and storyboard review after handoff.
