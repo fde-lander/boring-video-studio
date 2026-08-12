@@ -1,51 +1,54 @@
 ---
 name: verysmallwoods-video
-description: 小木头的个人视频流水线。基于一个主题，一篇文章，或一份口播稿，生成一整套可发布物料：视频成片，封面图，YouTube/Bilibili 文案，博客，以及社交媒体推广文案。视频制作采用 HyperFrames。
+description: Use when producing a complete VerySmallWoods episode or publishing bundle from a topic, article, research, narration, or existing video-planning artifact.
 ---
 
-你是这条流水线的**编排者**。输入一个主题 / 一篇文章 / 一份口播稿，产出一整套可发布物料（见「交付清单」）—— 不是一个 mp4。
+# VerySmallWoods video
 
-**视频本体委托给 HyperFrames，不在这里重讲。** 入口是 `/hyperframes`（核心入口，把「文章/主题 → 无实拍讲解」路由到 `/faceless-explainer` 去搭画面、逐帧、渲染）。任何视频生成上的不确定 → 先读 `/hyperframes`。
+Orchestrate one publishable episode. The five `to-*` skills own video planning and production; this skill owns intake, routing, publishing assets, and delivery completeness.
 
-视频内容优先用**动效、图形、图表、动画**表达，而不是静态文字。优先使用以下 HyperFrames skills：
-> - **`/hyperframes-animation`** —— 设计并处理动效。
-> - **`/hyperframes-creative`** —— 让画面「高级」而非「像幻灯」的设计方向：`references/video-composition.md`（视频不是网页：尺度、分层、幽灵字、纹理、填满画面）+ `references/house-style.md`（避开 AI 味、中性色染主色）。
+## Intake
 
-**本 skill 是它之上的一层编排，相对 faceless 只补三件事：**
+Resolve known choices from the request and existing project files. Ask one compact question for the remaining choices:
 
-1. **设计由用户选择** - 见 `references/designs.md`。
-2. **旁白增加一个「自录」选项** —— faceless 默认走 TTS；这里额外提供**用户自行录制**这条路（用户给音频 + SRT，你校对、切段、对齐、重排节奏）。见 `references/audio.md`。
-3. **生成发布素材** —— faceless 只出视频；这里补齐**五比例封面 + YouTube/Bilibili 文案 + 博客 + 推文**。见 `references/covers.md` / `platform-copy.md` / `blog-and-tweet.md`。
+1. **Presentation:** faceless explainer, or another form such as footage, screen capture, talking head, or mixed media?
+2. **Collaboration:** co-direct with storyboard reviews, or let the agent execute and present the final preview?
+3. **Voice:** user recording or TTS?
+4. **Design:** existing design truth, named preset, or a new direction? In agent-executed work, choose a concept-led direction when the user has not constrained it and record the choice for final review.
 
-开局把 ① ② 两个选择先问用户。
+Record the answers in `BRIEF.md`. A supplied project artifact is resumable state: begin at the first missing or explicitly revised conversion.
 
-## 交付清单（本 skill 的「完成」定义）
+## Video chain
 
-- [ ] **成片** - 4K master + 1080p，各一份，旁白已合流（`renders/`）
-- [ ] **五比例封面** - 16:9 / 16:10 / 4:3 / 3:4 / 9:16（`covers/`）
-- [ ] **平台文案** - `youtube.md` 和 `bilibili.md`
-- [ ] **博客** - `blog.md`
-- [ ] **推文** - 一条精简的社交媒体推广文案
+Run each missing conversion in order:
 
-## 工作流骨架（每步的「怎么做」在 references 里）
+1. `/to-spec-beats` → `BEATS.md`
+2. `/to-narration` → `NARRATION.md`
+3. `/to-scenes` → `SCENES.md`
+4. `/to-storyboard` → `STORYBOARD.md`
+5. `/to-video` → approved preview and requested renders
 
-一个选题 = 一个项目目录（当前工作目录下，命名 `<YYYYMMDD-slug>`）
+Each artifact is the next skill's interface. Finish its completion criterion before moving forward; when a later pass exposes a real conflict, revise the artifact that owns that decision and propagate the change.
 
-- Step 0 · 定选题、问两个选择（设计 + 旁白来源）→ `references/designs.md`
-- Step 1 · 视频 —— 走 `/hyperframes` → `/faceless-explainer` 出片，本 skill 只补口径 → `references/video.md`
-- Step 2 · 旁白接入 → `references/audio.md`
-- Step 3 · 生成五比例封面 → `references/covers.md`
-- Step 4 · 生成平台文案 → `references/platform-copy.md`
-- Step 5 · 博客 + 推文 → `references/blog-and-tweet.md`
-- Step 6 · 验收 + 渲染 - 对交付清单逐项核，1080p 先出、再出 4K master
+## HyperFrames route
 
-## 参考
+Use `/hyperframes` to establish the project contract. For a custom, longer, or multi-scene VerySmallWoods episode, set `workflow: general-video`; `/general-video` owns the HyperFrames implementation while `/to-video` owns the production state machine.
 
-| 要做… | 读 |
-|---|---|
-| 选设计 / design 目录 | `references/designs.md` |
-| 搭视频、逐帧、重排节奏、渲染 | `references/video.md` |
-| 旁白（TTS / 自录 + 校对 + 对齐 + 重拍节奏） | `references/audio.md` |
-| 五比例封面 | `references/covers.md` |
-| YouTube / Bilibili 文案 | `references/platform-copy.md` |
-| 博客 + 推文 | `references/blog-and-tweet.md` |
+When the user confirms faceless and the requested duration fits the current `/faceless-explainer` contract, that specialized workflow may own production. Faceless presentation and workflow selection are separate decisions: a faceless eight-minute technical essay still routes to `/general-video` when the specialized workflow's duration contract does not fit.
+
+Read [`references/video.md`](references/video.md) when selecting the route or starting the five-stage chain. Read [`references/audio.md`](references/audio.md) when the voice branch begins.
+
+## Publishing bundle
+
+After the final visual direction and locked narration are stable:
+
+- five covers: 16:9, 16:10, 4:3, 3:4, and 9:16;
+- `youtube.md` and `bilibili.md`;
+- `blog.md`;
+- one concise social post.
+
+Use the existing references for these outputs: `covers.md`, `platform-copy.md`, and `blog-and-tweet.md`.
+
+## Done
+
+The episode is complete when the five video artifacts satisfy their owners, requested renders are verified, all publishing items exist, and their titles, claims, terminology, and links agree with the locked narration.
