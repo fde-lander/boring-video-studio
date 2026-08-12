@@ -9,7 +9,7 @@ Turn `BEATS.md` and `NARRATION.md` into `SCENES.md`. A scene is a small event in
 
 ## Process
 
-1. Read both inputs, the applicable design truth, and [`../references/hyperframes-capability-envelope.md`](../references/hyperframes-capability-envelope.md). The envelope constrains feasibility without prescribing implementation. Treat narration as revisable evidence, not a locked timeline.
+1. Read both inputs, the applicable design truth, and [`references/hyperframes-capability-envelope.md`](references/hyperframes-capability-envelope.md). The envelope constrains feasibility without prescribing implementation. Treat narration as revisable evidence, not a locked timeline.
 2. Find a physical or spatial expression for each abstract beat: give the concept a body, put it in a world, and cause a visible state change.
 3. Group beats that belong to one continuous event; split a beat when its explanation requires distinct visual events.
 4. Design the film as a whole: establish a continuity object or motion, vary worlds and shot scales, place visual peaks, and name the rhythm.

@@ -14,10 +14,18 @@ The existing `verysmallwoods-video` skill remains available as the complete Very
 
 ## Installation
 
-Install the skills from this repository:
+Install `boring-video` and its planning stages:
 
 ```bash
-npx skills add sugarforever/boring-video-studio
+npx skills add sugarforever/boring-video-studio \
+  --skill boring-video to-spec-beats to-narration to-scenes to-storyboard to-video
+```
+
+Add `--global` to make the skills available across projects:
+
+```bash
+npx skills add sugarforever/boring-video-studio --global \
+  --skill boring-video to-spec-beats to-narration to-scenes to-storyboard to-video
 ```
 
 Video production requires HyperFrames and its local dependencies. Check the environment with:
@@ -28,10 +36,10 @@ npx hyperframes doctor
 
 ## Usage
 
-Ask your agent to use `boring-video` with a topic or source document:
+Invoke `$boring-video` with a topic or source document:
 
 ```text
-Use boring-video to turn this article into a planned eight-minute faceless explainer.
+$boring-video Turn this article into a planned eight-minute faceless explainer.
 ```
 
 The skill asks for any missing presentation, collaboration, voice, and design choices, then runs the planning chain:
@@ -45,9 +53,9 @@ The skill asks for any missing presentation, collaboration, voice, and design ch
 You can also invoke an individual stage when you already have its input:
 
 ```text
-Use to-scenes to redesign the visual direction for this narration.
+$to-scenes Redesign the visual direction for this narration.
 ```
 
 ```text
-Use to-storyboard to turn SCENES.md into a HyperFrames storyboard.
+$to-storyboard Turn SCENES.md into a HyperFrames storyboard.
 ```
