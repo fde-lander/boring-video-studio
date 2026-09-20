@@ -1,6 +1,6 @@
 ---
 name: record-terminal
-description: Use when a video needs a Chrome-recordable terminal that runs commands on the real local computer through ttyd.
+description: Use when recording terminal command execution for a video; use ttyd to present a real local shell in Chrome for capture.
 ---
 
 # Record terminal
